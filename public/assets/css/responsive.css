@@ -1,0 +1,311 @@
+@media only screen and (max-width: 1199px) {
+	.what-box {
+		    padding: 60px 40px;
+		}
+		.card-text {
+		    padding: 0;
+		    margin-top: 15px;
+		}
+		h2.section-title {
+		    font-size: 28px;
+		}
+}
+@media only screen and (max-width: 1024px) {
+	.fbox-content p {
+        padding-right: 0;
+    }
+}
+
+
+
+
+@media only screen and (max-width: 991px) {
+	.lbl-about .section-intro p {
+	    max-width: 100%;
+	}
+	.f-image {
+	    margin-top: 50px;
+	}
+	.lbl-about {
+	    padding: 50px 0 50px 0;
+	}
+	.footer .footer-menu {
+	    text-align: center;
+	    padding: 0;
+	    margin-bottom: 20px;
+	}
+	.lbl-about, .lbl-services, .what-we-area {
+	    padding: 50px 0 50px 0;
+	}
+	.what-box {
+	    box-shadow: 0px 0px 40px 0px rgb(152 152 153 / 13%);
+	}
+	.footer .footer-links ul {
+	    text-align: center;
+	    padding: 0;
+	}
+	.footer .footer-logo {
+	    text-align: center;
+	    margin-top: 15px;
+	}
+section.banner {
+    background-position: 100% 100%;
+}
+
+section.my-gembas-section, section.how-to-section, .add-gemba-section, .section-gap {
+    padding: 50px 0 50px 0;
+}
+.update-profile h3 {
+    font-size: 18px;
+}
+.total-points-div h3 {
+    font-size: 14px;
+}
+.update-profile img {
+    height: 70px;
+    width: 70px;
+}
+.total-points-div a.btn-badge {
+    font-size: 24px;
+}
+.update-profile {
+    margin-right: 0px;
+}
+section.breadcrumb-section {
+    padding: 40px 0;
+}
+}
+@media only screen and (max-width: 767px) {
+	header#myHeader li.nav-item a.nav-link {
+    padding-left: 0;
+}
+.dropdown-menu {
+    margin-top: 10px !important;
+    box-shadow: none;
+    min-width: 220px;
+    border: 0;
+}
+.navbar-nav {
+    margin-top: 5px;
+    border-top: 1px solid #ddd;
+    padding-top: 5px;
+    padding-bottom: 8px;
+}
+.dropdown-menu a.dropdown-item {
+    padding-left: 8px;
+}
+
+.update-profile {
+    border-right: 0;
+    border-bottom: 2px dashed #d9d7d7;
+    padding-bottom: 25px;
+}
+.total-points-div {
+    text-align: left;
+    margin-top: 20px;
+    align-items: flex-start;
+}
+.gembas-list-table tr th, .gembas-list-table tr td {
+    padding-left: 0;
+    white-space: nowrap;
+    padding-right: 20px;
+}
+.form-question-btm .accordion-body {
+    padding-top: 60px;
+}
+.banner-text h1 {
+    font-size: 32px;
+    line-height: 48px;
+}
+.modal-btn-group {
+    flex-direction: column;
+}
+}
+@media only screen and (max-width: 575px) {
+    .improvement-upload {
+    display: block;
+    margin: 0;
+}
+.banner-text p {
+    font-size: 16px;
+}
+.banner-text h1 {
+    font-size: 24px;
+    line-height: 38px;
+}
+.banner-text h3 {
+    font-size: 18px;
+}
+.what-box {
+    padding: 20px 40px;
+    margin-top: 20px;
+}
+h2.section-title {
+    font-size: 24px;
+}
+.card-text h3 {
+    font-size: 18px;
+}
+.card-text p {
+    font-size: 15px;
+}
+.card_single {
+    padding: 20px 12px 10px;
+}
+.what-box {
+    padding: 20px 40px;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.what-info {
+    margin-top: 20px;
+    text-align: center;
+    margin-left: 0;
+}
+.lbl-about .section-intro.text-left {
+    text-align: center;
+}
+.f-image {
+    margin-top: 40px;
+}
+.footer .footer-menu li {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.footer .footer-menu li a {
+    justify-content: center;
+}
+.section-intro p {
+    font-size: 16px;
+}
+.login-page {
+    padding: 50px 10px;
+}
+.contact-form-box {
+    padding: 30px 20px;
+}
+.contact-form-box input.form-control {
+    height: 40px;
+    padding: 12px 10px;
+}
+.accordion-body {
+    padding: 15px;
+}
+.form-team-tp {
+    flex-direction: column;
+    align-items: flex-start;
+}
+.form-team-tp label {
+    margin-bottom: 15px;
+}
+.addMoreTeamDiv {
+    text-align: left;
+}
+a.email-repeat-btn {
+    margin-left: 10px;
+    min-width: 20px;
+    height: 20px;
+    font-size: 12px;
+}
+.emailField i {
+    right: -15px;
+}
+.add-gemba-section .form-submit-action .submit-button {
+    white-space: normal;
+    font-size: 12px;
+    height: auto;
+    line-height: 20px;
+    min-height: 52px;
+    margin: 0 0 15px;
+    width: 100%;
+    padding: 10px 30px;
+}
+.custom-modal-design .modal-header h5 {
+    font-size: 20px;
+}
+.custom-modal-design button.btn-close {
+    right: 0px;
+    top: -8px;
+    width: 24px;
+    height: 24px;
+}
+.custom-modal-design .form-group.form-submit-action button.submit-button {
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 48%;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+.custom-modal-design .form-group.form-submit-action {
+    justify-content: space-between;
+    width: 100%;
+}
+.modal-bottom-msg h3 {
+    font-size: 18px;
+}
+
+.custom-modal-design  .modal-footer {
+    padding-left: 0;
+    padding-right: 0;
+}
+.fbox-content {
+    padding: 0;
+}
+.feature-box {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+.fbox-icon {
+    margin-bottom: 20px;
+}
+.form-submit-action .submit-button {
+    height: 42px;
+    font-size: 12px;
+    line-height: 42px;
+}
+.gembas-details-item {
+    width: 100%;
+}
+.gembas-question-details .Questions-lists ul li {
+    flex-direction: column;
+}
+.gembas-question-details .Questions-lists ul li label {
+    margin-bottom: 5px;
+}
+.gembas-details-item.w-100 .gemba-details-value {
+    text-align: left;
+}
+.gembas-details-item.w-100 {
+    flex-direction: column;
+}
+.gembas-details-item.w-100 .gemba-details-value {
+    text-align: left;
+    margin-top: 10px;
+}
+.gembas-details-item:last-child {
+    border: 0;
+    margin: 0;
+}
+.checkbox-group .form-check {
+    margin-bottom: 10px;
+}
+.gembas-list-card {
+    padding: 15px;
+}
+.gembas-details-item {
+    flex-direction: column;
+}
+.gembas-details-item .gemba-details-value {
+    text-align: left;
+    margin-top: 10px;
+    font-size: 14px;
+}
+}
+@media only screen and (max-width:375px) {
+
+}
