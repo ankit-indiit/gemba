@@ -1,25 +1,6 @@
 @extends('layout.master')
 @section('content')	
-<!-- breadcrumb Start -->
-<section class="breadcrumb-section">
-   <div class="container">
-      <div class="row">
-         <div class="col-lg-10 offset-lg-1">
-            <div class="banner-text">
-               <h1>How to do a Gemba?</h1>
-               <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb justify-content-center">
-                         <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                     <li class="breadcrumb-item active" aria-current="page">How to</li>
-                  </ol>
-               </nav>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
-<!-- breadcrumb End -->
-<!-- breadcrumb Start -->
+@include('page.component.bread-crumb', ['title' => 'How to do a Gemba?'])
 <section class="how-to-section">
    <div class="container">
       <div class="row">

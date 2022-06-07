@@ -1,24 +1,9 @@
 @extends('layout.master')
 @section('content')	
-<!-- breadcrumb Start -->
-<section class="breadcrumb-section">
-   <div class="container">
-      <div class="row">
-         <div class="col-lg-10 offset-lg-1">
-            <div class="banner-text">
-               <h1>Leader at Gemba. Balance your leadership roles</h1>
-               <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb justify-content-center">
-                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                     <li class="breadcrumb-item active" aria-current="page">Leader at Gemba. Balance your leadership roles</li>
-                  </ol>
-               </nav>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
-<!-- breadcrumb End -->
+@include('page.component.bread-crumb', [
+   'title' => 'Leader at Gemba. Balance your leadership roles'
+])
+
 <section class="develope-section section-gap leaderbox">
    <div class="container">
       <div class="row">
@@ -34,7 +19,7 @@
                      <div class="fbox-content">
                         <h3>Develop a high-performance team</h3>
                         <p>Develop the dream team capable to move beyond company goals</p>
-                        <a href="{{ route('develop-employee') }}"  class="get-started-btn what-btn">Get Started</a>
+                        <a href="{{ route('gemba.index') }}"  class="get-started-btn what-btn">Get Started</a>
                      </div>
                   </div>
                </div>
@@ -64,7 +49,7 @@
       </div>
       <div class="row mt-4">
          <div class="col-md-4">
-            <a href="{{ route('my-gembas') }}">
+            <a href="{{ route('my-gemba.index') }}">
                <div class="what-box">
                   <div class="what-info m-0">
                      <h5 class="text-center">My Gembas</h5>

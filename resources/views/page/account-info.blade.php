@@ -1,24 +1,8 @@
 @extends('layout.master')
 @section('content')	
-<!-- breadcrumb Start -->
-<section class="breadcrumb-section">
-   <div class="container">
-      <div class="row">
-         <div class="col-lg-10 offset-lg-1">
-            <div class="banner-text">
-               <h1>Account Information</h1>
-               <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb justify-content-center">
-                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                     <li class="breadcrumb-item active" aria-current="page">Account Information</li>
-                  </ol>
-               </nav>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
-<!-- breadcrumb End -->
+@include('page.component.bread-crumb', [
+    'title' => 'Account Information',
+])
 <section class="develope-section section-gap leaderbox">
    <div class="container">
       <div class="row">
@@ -27,9 +11,12 @@
                <div class="card">
                   <div class="text-center card-body">
                      <div class="user-image ">
-                        <img class="rounded-circle img-thumbnail" src="{{ asset('assets/img/user.jpg') }}">
+                        <img class="rounded-circle img-thumbnail userProfile" src="{{ Auth::user()->image }}">
                         <label for="user-img">Upload Image</label>
-                        <input id="user-img" name="user-img" style="display:none" type="file">
+                        <form id="uploadProfileImage">
+                           <input type="hidden" name="type" value="profile_image">
+                           <input id="user-img" name="user_profile_image" style="display:none" type="file">
+                        </form>
                      </div>
                   </div>
                </div>
@@ -53,29 +40,33 @@
                      <div class="profile_form">
                         <h4 class="mt-0 mb-4">Basic Info</h4>
                      </div>
-                     <div class="row profile_form">
-                        <div class="col-md-6">
-                           <div class="form-group">
-                              <label class="frm_label">Name</label>
-                              <div class="input-group">
-                                 <input class="form-control" placeholder="Enter Name" value="John Smith">
+                     <form action="{{ route('update-profile') }}" method="POST" id="updateProfileForm">
+                        @csrf
+                        <div class="row profile_form">
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label class="frm_label">Name</label>
+                                 <div class="input-group">
+                                    <input class="form-control user-name" name="name" placeholder="Enter Name" value="{{ Auth::user()->name }}">
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6 mb-3">
+                              <div class="form-group">
+                                 <label class="frm_label">Email</label>
+                                 <div class="input-group">
+                                    <input class="form-control" placeholder="Enter Email" value="{{ Auth::user()->email }}" disabled="">
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-12">
+                              <input type="hidden" name="type" value="name">
+                              <div class="form-group justify-content-end d-flex">
+                                 <button type="submit" class="submit-button w-25" id="updateProfileFormBtn">Submit</button>
                               </div>
                            </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                           <div class="form-group">
-                              <label class="frm_label">Your Email</label>
-                              <div class="input-group">
-                                 <input class="form-control" placeholder="Enter Email" value="johnsmith@gmail.com">
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-12">
-                           <div class="form-group justify-content-end d-flex">
-                              <button type="submit" class="submit-button w-25" name="submit-btn">Submit</button>
-                           </div>
-                        </div>
-                     </div>
+                     </form>
                   </div>
                   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                      <div class="profile_form mt-4 d-flex align-items-center justify-content-between">
@@ -86,27 +77,15 @@
                         </a>
                      </div>
                      <div class="row mb-3">
-                        <div class="col-md-3 text-center">
-                           <div class="prbox">
-                              <img src="{{ asset('assets/img/user.jpg') }}" class="uimg" alt="" />
-                              <h6 class="mt-2">Xyz</h6>
-                              <i class="fa fa-trash"></i>
+                        @foreach ($teams as $team)
+                           <div class="col-md-3 text-center teamColumn{{ $team->id }}">
+                              <div class="prbox">
+                                 <img src="{{ $team->image }}" class="uimg" alt="" />
+                                 <h6 class="mt-2">{{ $team->name }}</h6>
+                                 <i class="fa fa-trash" id="deleteUserTeam" data-id="{{ $team->id }}"></i>
+                              </div>
                            </div>
-                        </div>
-                        <div class="col-md-3 text-center">
-                           <div class="prbox">
-                              <img src="{{ asset('assets/img/user.jpg') }}" class="uimg" alt="" />
-                              <h6 class="mt-2">Xyz</h6>
-                              <i class="fa fa-trash"></i>
-                           </div>
-                        </div>
-                        <div class="col-md-3 text-center">
-                           <div class="prbox">
-                              <img src="{{ asset('assets/img/user.jpg') }}" class="uimg" alt="" />
-                              <h6 class="mt-2">Xyz</h6>
-                              <i class="fa fa-trash"></i>
-                           </div>
-                        </div>
+                        @endforeach
                      </div>
                      <div class="row profile_form">
                         <div class="col-md-6 mb-3">
@@ -212,37 +191,41 @@
                      <div class="profile_form">
                         <h4 class="mt-0 mb-4">Change Password</h4>
                      </div>
-                     <div class="row profile_form">
-                        <div class="col-md-6">
-                           <div class="form-group">
-                              <label class="frm_label">Current Password</label>
-                              <div class="input-group">
-                                 <input class="form-control" type="password" placeholder="Enter Current Password">
+                     <form action="{{ route('update-profile') }}" method="POST" id="updatePasswordForm">
+                        @csrf
+                        <div class="row profile_form">
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label class="frm_label">Current Password</label>
+                                 <div class="input-group">
+                                    <input class="form-control" type="password" name="current_password" placeholder="Enter Current Password" value="{{ Auth::user()->paddword }}">
+                                 </div>
                               </div>
                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                           <div class="form-group">
-                              <label class="frm_label">New Password</label>
-                              <div class="input-group">
-                                 <input class="form-control" type="password" placeholder="New Current Password">
+                           <div class="col-md-6 mb-3">
+                              <div class="form-group">
+                                 <label class="frm_label">New Password</label>
+                                 <div class="input-group">
+                                    <input class="form-control" type="password" name="new_password" placeholder="New Current Password" id="newPassword">
+                                 </div>
                               </div>
                            </div>
-                        </div>
-                        <div class="col-md-12">
-                           <div class="form-group">
-                              <label class="frm_label">Confirm New Password</label>
-                              <div class="input-group">
-                                 <input class="form-control" type="password" placeholder="Enter Current Password">
+                           <div class="col-md-12">
+                              <div class="form-group">
+                                 <label class="frm_label">Confirm New Password</label>
+                                 <div class="input-group">
+                                    <input class="form-control" type="password" name="confirm_password" placeholder="Enter Current Password">
+                                 </div>
                               </div>
                            </div>
-                        </div>
-                        <div class="col-md-12">
-                           <div class="form-group justify-content-end d-flex">
-                              <button type="submit" class="submit-button w-25" name="submit-btn">Update</button>
+                           <div class="col-md-12">
+                              <input type="hidden" name="type" value="password">
+                              <div class="form-group justify-content-end d-flex">
+                                 <button type="submit" class="submit-button w-25" id="updatePasswordFormBtn">Update</button>
+                              </div>
                            </div>
-                        </div>
-                     </div>
+                        </div>                        
+                     </form>
                   </div>
                </div>
             </div>
