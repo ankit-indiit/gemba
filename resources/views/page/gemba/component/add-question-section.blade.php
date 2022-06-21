@@ -13,25 +13,23 @@
                         <input type="hidden" id="addQuesIndex" value="1">
                          <div class="form-group mb-4">
                             <label class="form-label">Type of question:</label>
-                            <select class="form-select questionType" name="question[0][type]" id="">
-                               <option value="">Select</option>
-                               <option value="Text">Text</option>
-                               <option value="Dropdown">Dropdown</option>
-                               <option value="Checkbox">Checkbox</option>
-                               <option value="Radio">Radio</option>
+                            <select class="form-select questionType" id="qusType">
+                               <option value="">Select one</option>
+                               <option value="Text" selected>Text</option>                               
                             </select>
                          </div>
                          <div class="form-group mb-4">
                             <label class="form-label">Question label:</label>
-                            <input type="text" class="form-control" name="question[0][label]">
-                         </div>
-                         <div class="form-group mb-4 list-of-ptions">
-                            <label class="form-label">List of options (Separated by commas)</label>
-                            <input type="text" class="form-control" name="question[0][list_option]">
+                            <input type="text" class="form-control" id="qusLabel">
+                         </div>                         
+                         <div class="form-group mb-4">
+                            <label class="form-label">Comment</label>
+                            <textarea class="form-control" id="qusCmnt" rows="3"></textarea>
                          </div>
                       </div>
                   </div>
               </div>
+              <a href="javascript:void(0)" class="submitQuestions mb-2" type="button"> Submit </a>
           </div>
       </div>
   </div>

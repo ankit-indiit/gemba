@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGembaFormsTable extends Migration
+class CreateGembaPointsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateGembaFormsTable extends Migration
      */
     public function up()
     {
-        Schema::create('gemba_forms', function (Blueprint $table) {
+        Schema::create('gemba_points', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullabel();
-            $table->string('slug')->nullabel();
-            $table->string('sumission_point')->nullabel();
+            $table->integer('user_id')->nullable();
+            $table->integer('point')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateGembaFormsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gemba_forms');
+        Schema::dropIfExists('gemba_points');
     }
 }

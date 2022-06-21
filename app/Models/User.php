@@ -25,6 +25,7 @@ class User extends Authenticatable
         'team_id',
         'role',
         'token',
+        'description',
     ];
 
     /**
@@ -35,6 +36,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    protected $appends = [
+        'gemba_submission',        
     ];
 
     /**
@@ -53,5 +58,54 @@ class User extends Authenticatable
         } else {
             return @asset('assets/img/dummy-user-image.png');
         }
+    }
+
+    public function getGembaSubmissionAttribute()
+    {
+        $submited = GembaUserMeta::where('user_id', $this->attributes['id'])
+            ->whereMonth('created_at', date("m"))
+            ->groupBy('gemba_form_id')
+            ->pluck('gemba_form_id')
+            ->toArray();
+        $formIds = GembaForm::pluck('id')->toArray();
+        $submitedForm = array_intersect($submited, $formIds);
+        $arr = array_diff($submited, $formIds);
+        if (in_array(7777, $arr)) {    
+
+            $getLastBonusArrayId = GembaUserMeta::where('user_id', $this->attributes['id'])
+                ->whereMonth('created_at', date("m"))
+                ->where('gemba_form_id', 7777)
+                ->orderBy('id', 'DESC')
+                ->pluck('id')
+                ->first();
+    
+            $submited_inner = GembaUserMeta::where('user_id', $this->attributes['id'])
+                ->whereMonth('created_at', date("m"))
+                ->where('id', '>',  $getLastBonusArrayId)
+                ->groupBy('gemba_form_id')
+                ->pluck('gemba_form_id')
+                ->toArray();
+
+            $submitedForm = array_intersect($submited_inner, $formIds); 
+
+            if (count($submitedForm) == count($formIds)) {
+                // bonus added here
+                return GembaUserMeta::create([
+                    'user_id' => $this->attributes['id'],
+                    'gemba_form_id' => 7777,
+                    'points' => 50,
+                ]);           
+            } 
+        } else {
+            if (count($submitedForm) == count($formIds)) {
+                // bonus added here
+                return GembaUserMeta::create([
+                    'user_id' => $this->attributes['id'],
+                    'gemba_form_id' => 7777,
+                    'points' => 50,
+                ]);  
+            }            
+        }
+        return '';
     }
 }

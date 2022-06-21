@@ -61,9 +61,7 @@ $("#loginForm").validate({
 function cloneEmailField(index)
 {
   var advertMembers = $('#advertMembers'+index).val();
-  var teamEmailFields = $('.addEmailFieldMain'+ index +' > .teamEmail').length;
-  // console.log(advertMembers);
-  // console.log(teamEmailFields);
+  var teamEmailFields = $('.addEmailFieldMain'+ index +' > .teamEmail').length;  
   if (teamEmailFields >= advertMembers) {
     $('.clone-email-field').prop('disabled', true);
     $('.clone-email-field').css("cursor", "no-drop");
@@ -79,14 +77,33 @@ $(document).on('click', '.remove-email-field', function(){
 });
 
 jQuery.validator.addMethod("advertMembers", function(value, element) {
-
   var currInc = $(element).data('inc');
+  var __currentActiveDiv = $(element).closest("div[data-formNo]").attr('data-formNo');
+  currInc = __currentActiveDiv;
   if (value > 5 || value <= 0 || value > '5' || value <= '0') {
     $('#advertMembers'+currInc).val('');
+    Swal.fire({
+        title: '',
+        text: "You are adding more team members that you can use with your current license. Please, purchase your license at the Premium registration page. !"
+        , icon: 'warning',
+        showCancelButton: true,
+        showConfirmButton: false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        // confirmButtonText: 'OK'
+    }).then((result) => {
+      if (result.isConfirmed) {        
+        // Swal.fire('Saved!', '', 'success')
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
     return false;
   } else {
     var teamEmailFields = $('.removeablee'+currInc).length;
-
+    console.log('value-----'+value);
+    console.log('email-field-----'+teamEmailFields);
+    console.log('index-------'+currInc);
     if (value <= teamEmailFields) {
 
       const diff = (teamEmailFields - value);
@@ -95,7 +112,6 @@ jQuery.validator.addMethod("advertMembers", function(value, element) {
       } else {
         $('.addEmailFieldMain'+currInc+' > .removeablee'+currInc).slice(-(diff)).remove();
       }
-      console.log(diff);
     }
     return true;
   }
@@ -169,7 +185,7 @@ $("#registerForm").validate({
         email: "Please enter your email",
         password: "Please enter your password",
         password_confirmation: "Password and confirm password must be match",
-        image: "Choose enter your profile picture",                             
+        image: "Choose your profile picture",                             
      },
     submitHandler: function(form) {
      var serializedData = new FormData(form);
@@ -234,12 +250,16 @@ $(document).ready(function(){
 
 $("#updateProfileForm").validate({
   rules: {        
-      name: {
-         required: true,
-      },    
+    name: {
+      required: true,
+    },
+    description: {
+      required: true,
+    },    
    },
    messages: {
       name: "Name can not be blank!",      
+      description: "Please enter description!",      
    },
   submitHandler: function(form) {
    var serializedData = new FormData(form);
@@ -329,6 +349,90 @@ $("#updatePasswordForm").validate({
   }
 });
 
+$('form#addTeamForm').on('submit', function(event) {
+    $('.teams_name').each(function() {
+      $(this).rules("add", 
+        {
+          required: true,
+          messages: {
+              required: "Team's Name is required",
+        }
+      });
+    });
+    $('.teams_logo').each(function() {
+      $(this).rules("add", 
+        {
+          required: true,
+          messages: {
+              required: "Team's logo is required",
+        }
+      });
+    });
+    $('.advert_members').each(function() {
+        $(this).rules("add", 
+          {
+            required: true,
+            number: true,
+            advertMembers: true,
+            messages: {
+                required: "Please enter members",
+                number: "Alphabetical value is not allowed",
+                advertMembers: "You can enter a value less than or equal to 5",
+          }
+        });
+    });
+
+    $('.teams_email').each(function() {
+        $(this).rules("add", 
+          {
+            required: true,
+            messages: {
+                required: "Enter team advert members email",                   
+          }
+        });
+    });
+});
+
+$("#addTeamForm").validate({
+    rules: {
+        item: {
+           required: true,
+        },        
+     },
+     messages: {
+        item: "This field is required!",                                  
+     },
+    submitHandler: function(form) {
+     var serializedData = new FormData(form);
+     $("#err_mess").html('');
+     $('#addTeamFormBtn').html('Processing <i class="fa fa-spinner fa-spin"></i>');
+     $("#addTeamFormBtn").attr("disabled", true);
+     $.ajax({
+        headers: {
+           'X-CSRF-Token': $('input[name="_token"]').val()
+        },
+        type: 'post',
+        url: _baseURL + "/team",
+        data: serializedData,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function(data) {
+          toastr.options.timeOut = 4000;
+          if (data.status == true) {
+            $('#addTeamFormBtn').html('Save Changes');
+            toastr.success(data.message);
+            window.location.reload();
+          } else {
+            toastr.error(data.message);
+          }        
+        }
+     });
+     return false;
+  }
+});
+
 $(document).on('click', '#deleteUserTeam', function (e) {
     e.preventDefault();
     var id = $(this).data('id');
@@ -346,8 +450,8 @@ $(document).on('click', '#deleteUserTeam', function (e) {
           headers: {
              'X-CSRF-Token': $('input[name="_token"]').val()
           },
-          type: 'post',
-          url: _baseURL + "/delete-team",
+          type: 'DELETE',
+          url: _baseURL + "/team/"+id,
           data: {
             id: id,
           },          
@@ -366,4 +470,75 @@ $(document).on('click', '#deleteUserTeam', function (e) {
         Swal.fire('Changes are not saved', '', 'info')
       }
     })
+});
+
+$(document).on('click', '#editUserTeam', function(){
+  var teamId = $(this).data('team-id');
+  $('.edit-user-team').html('<h1 class="text-center"><i class="fa fa-spinner fa-spin"></i></h1>');
+   $.ajax({
+    headers: {
+       'X-CSRF-Token': $('input[name="_token"]').val()
+    },
+    type: 'get',
+    url: _baseURL + "/team/"+teamId+"/edit",
+    data: {
+      teamId: teamId,
+    },          
+    success: function(data) {
+      toastr.options.timeOut = 4000;      
+      if (data.status == true) {
+        $('.edit-user-team').html(data.form);
+        // toastr.success(data.message);
+      } else {
+        toastr.error(data.message);
+      }        
+    }
+  });
+})
+
+$("#updateTeamForm").validate({
+    rules: {
+        teams_name: {
+           required: true,
+        },
+        adverts_count: {
+           required: true,
+        },       
+     },
+     messages: {
+        teams_name: "This field is required!",                                  
+        adverts_count: "This field is required!",                                  
+     },
+    submitHandler: function(form) {
+      var teamId = $('#userTeamId').val();
+      var form = $('#updateTeamForm')[0];
+      var serializedData = new FormData(form);
+      console.log(serializedData);
+      $("#err_mess").html('');
+      $('#updateTeamFormBtn').html('Processing <i class="fa fa-spinner fa-spin"></i>');
+      $("#updateTeamFormBtn").attr("disabled", true);
+      $.ajax({
+        headers: {
+           'X-CSRF-Token': $('input[name="_token"]').val()
+        },
+        type: 'post',
+        url: _baseURL + "/update-team",
+        data: serializedData,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function(data) {
+          toastr.options.timeOut = 4000;
+          if (data.status == true) {
+            $('#updateTeamFormBtn').html('Save Changes');
+            toastr.success(data.message);
+            window.location.reload();
+          } else {
+            toastr.error(data.message);
+          }        
+        }
+     });
+     return false;
+  }
 });

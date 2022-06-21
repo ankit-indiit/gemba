@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\GembaForm;
 use App\Models\GembaUserMeta;
 use App\Models\GembaUserFormMeta;
+use App\Models\GembaPoint;
+use App\Models\Hazard;
 use DB;
 use Auth;
 use Session;
@@ -16,7 +18,9 @@ class MyGembaController extends Controller
     {       
         $gembas = GembaUserMeta::filter($request->all())
             ->where('user_id', Auth::user()->id)
-            ->paginate(10);
+            ->where('gemba_form_id', '!=','7777')
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);       
         return view('page.gemba.my-gemba', compact('gembas'));
     }
 
@@ -33,22 +37,36 @@ class MyGembaController extends Controller
                 break;                          
             }   
         }
-        // switch($gemba->gemba_form_id)
-        // {      
-        //     case 1:                 
-        //         return view('page.gemba.hsse-leader-led.show', compact('gemba'));
-        //     break;
-        //     case 2:                 
-        //         return view('page.gemba.vision-and-mission.show', compact('gemba'));
-        //     break;
-        //     case 3:                 
-        //         return view('page.gemba.processes-are-standard.show', compact('gemba'));
-        //     break;
-        //     case 4:                 
-        //         return view('page.gemba.employees-are-engaged.show', compact('gemba'));
-        //     break;
-        //     default:      
-        //     return redirect()->back()->with('error', 'Something went worng!');            
-        // }
-    }     
+    }    
+
+    public function myReflection(Request $request)
+    {
+        return view('page.gemba.my-reflection.my-reflection');
+    }
+
+    public function myReflectionList(Request $request, $title)
+    {
+        $gembaIds = GembaUserMeta::where('user_id', Auth::user()->id)
+            ->pluck('id')
+            ->toArray();
+        $reflections = GembaUserFormMeta::filter($request->all())
+            ->where('meta_key', str_replace("-", "_", $title))
+            ->where('meta_value', '!=', 'N;')
+            ->where('meta_value', '!=', '')
+            ->whereIn('gemba_user_meta_id', $gembaIds)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
+        return view('page.gemba.my-reflection.my-reflection-list', compact('reflections'));
+    }
+
+    public function myReflectionDetail(Request $request, $gembaUserMetaId, $title)
+    {
+        $gemba = GembaUserMeta::where('id', $gembaUserMetaId)->first();         
+        return view('page.gemba.my-reflection.my-reflection-detail', compact('title', 'gemba'));
+    }
+
+    public function appInformation()
+    {
+        return view('page.app-information');
+    }
 }

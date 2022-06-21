@@ -13,30 +13,15 @@
                             <div class="d-flex align-items-center justify-content-end ">
                                 <input type="date" name="start_date" value="{{ request()->start_date ? request()->start_date : '' }}" placeholder="From" class="form-control" id="gembaStartDate">
                                 <span class="px-3">To</span>
-                                <input type="date" name="end_date" value="{{ request()->start_date ? request()->start_date : '' }}" placeholder="To" class="form-control me-3" id="gembaEndDate">
+                                <input type="date" name="end_date" value="{{ request()->end_date ? request()->end_date : '' }}" placeholder="To" class="form-control me-3" id="gembaEndDate">
                                 <button type="submit" class="btn btn-primary btn-search"><i class="fa fa-search" aria-hidden="true"></i></button>                                
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="gembas-list-profile">
-                    <div class="row ">
-                        <div class="col-md-8">
-                            <div class="update-profile d-flex">
-                                <img src="{{ Auth::user()->image }}" alt="">
-                                <div class="ms-4 mt-lg-3">
-                                    <h3 class="mb-0">{{ Auth::user()->name }}</h3>
-                                    <span class="text-gray">Lorem Ipsum is simply dummy text </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 total-points-div">
-                            <h3 class="mb-0">Total points this month</h3>
-                            <div class="d-flex align-items-center">
-                                <a href="javascript:void(0);" class="btn-badge">63 </a> <i class="fa fa-info-circle ms-2" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tooltip on bottom"></i>
-                            </div>                     
-                        </div>
-                    </div>
+                    {{-- Gemba Ponts --}} 
+                    @include('page.gemba.component.gemba-points-bar')
                 </div>
                 @if (count($gembas) > 0 )
                     <div class="gembas-list-table">
@@ -57,6 +42,9 @@
                                        <td>{{ $gemba->form_name }}</td>
                                        <td>{{ $gemba->formMeta('time_at_gemba') }}</td>
                                        <td>
+                                          <a href="{{ route('gemba.edit', $gemba->id) }}" class="table-action-btn">
+                                            <i class="fa fa-edit" aria-hidden="true"></i>
+                                          </a>
                                           <a href="{{ route('my-gemba.show', $gemba->id) }}" class="table-action-btn">
                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                           </a>
@@ -70,8 +58,8 @@
                             @if ($gembas->previousPageUrl())
                                 <a class="btn-action me-2" href="{{ $gembas->previousPageUrl() }}">Previous </a>
                             @endif
-                            @if ($gembas->nextPageUrl())                              
-                                <a class="btn-action ms-2" href="{{ $gembas->nextPageUrl() }} ">Next</a>
+                            @if ($gembas->nextPageUrl())                                
+                                <a class="btn-action ms-2" href="{{ $gembas->nextPageUrl() }}">Next</a>
                             @endif
                         </div>
                     </div>

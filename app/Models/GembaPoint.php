@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserTeamMember extends Model
+class GembaPoint extends Model
 {
     use HasFactory;
 
     protected $fillable = [
     	'user_id',
-    	'team_member_id',
-    	'team_id',
+    	'point',
     ];
 }

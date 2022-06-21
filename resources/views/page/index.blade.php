@@ -5,9 +5,9 @@
     <div class="row">
       <div class="col-lg-10 offset-lg-1">
         <div class="banner-text">
-          <h3>Welcome User #1234568</h3>
+          <h3>Welcome {{ Auth::user()->name }} #0000{{ Auth::id() }}</h3>
           <h1>Go to Gemba with a purpose</h1>
-          <p>This app nas been designed to be your main tool to assist you and your team in an inspiring development journey to develop fully engaged, high performance employees and teams.</p>
+          <p>This app has been designed to be your main tool to assist you and your team in an inspiring development journey to develop fully engaged, high performance employees and teams.</p>
         </div>
       </div>
     </div>
@@ -72,64 +72,116 @@
     </div>
     <div class="lbl_cards row">
       <div class="col-lg-3 col-sm-6">
-        <div class="card_single">
-          <div class="card-icon">
-            <div class="card-img">
-              <img src="{{ asset('assets/img/s1.png') }}"  alt="Feature">
+        <a href="{{ route('my-gemba.index') }}">
+          <div class="card_single">
+            <div class="card-icon">
+              <div class="card-img">
+                <img src="{{ asset('assets/img/s1.png') }}"  alt="Feature">
+              </div>
             </div>
-          </div>
-          <div class="card-text">
-            <h3>My Statistics</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-        </div>
+            <div class="card-text">
+              <h3>My Gembas</h3>
+              <p></p>
+            </div>
+          </div>          
+        </a>
       </div>
       <div class="col-lg-3 col-sm-6">
-        <div class="card_single">
-          <div class="card-icon">
-            <div class="card-img">
-              <img src="{{ asset('assets/img/s2.png') }}"  alt="Feature">
+        <a href="{{ route('my-reflection') }}">
+          <div class="card_single">
+            <div class="card-icon">
+              <div class="card-img">
+                <img src="{{ asset('assets/img/s1.png') }}"  alt="Feature">
+              </div>
             </div>
-          </div>
-          <div class="card-text">
-            <h3>Global Ranking</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-        </div>
+            <div class="card-text">
+              <h3>My Reflections</h3>
+              <p></p>
+            </div>
+          </div>          
+        </a>
       </div>
       <div class="col-lg-3 col-sm-6">
-        <div class="card_single">
-          <div class="card-icon">
-            <div class="card-img">
-              <img src="{{ asset('assets/img/s3.png') }}"  alt="Feature">
+        <a href="">
+          <div class="card_single">
+            <div class="card-icon">
+              <div class="card-img">
+                <img src="{{ asset('assets/img/s3.png') }}"  alt="Feature">
+              </div>
             </div>
-          </div>
-          <div class="card-text">
-            <h3>My Action List</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-        </div>
+            <div class="card-text">
+              <h3>My Action List</h3>
+              <p></p>
+            </div>
+          </div>          
+        </a>
       </div>
       <div class="col-lg-3 col-sm-6">
-        <div class="card_single">
-          <div class="card-icon">
-            <div class="card-img">
-              <img src="{{ asset('assets/img/s4.png') }}"  alt="Feature">
+        <a href="">
+          <div class="card_single">
+            <div class="card-icon">
+              <div class="card-img">
+                <img src="{{ asset('assets/img/s1.png') }}"  alt="Feature">
+              </div>
             </div>
-          </div>
-          <div class="card-text">
-            <h3>My Rewards</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-        </div>
+            <div class="card-text">
+              <h3>My ideas</h3>
+              <p></p>
+            </div>
+          </div>          
+        </a>
       </div>
-      
+      <div class="col-lg-3 col-sm-6">
+        <a href="">
+          <div class="card_single">
+            <div class="card-icon">
+              <div class="card-img">
+                <img src="{{ asset('assets/img/s1.png') }}"  alt="Feature">
+              </div>
+            </div>
+            <div class="card-text">
+              <h3>My Statistics</h3>
+              <p></p>
+            </div>
+          </div>          
+        </a>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <a href="">
+          <div class="card_single">
+            <div class="card-icon">
+              <div class="card-img">
+                <img src="{{ asset('assets/img/s4.png') }}"  alt="Feature">
+              </div>
+            </div>
+            <div class="card-text">
+              <h3>My Rewards</h3>
+              <p></p>
+            </div>
+          </div>          
+        </a>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <a href="">
+          <div class="card_single">
+            <div class="card-icon">
+              <div class="card-img">
+                <img src="{{ asset('assets/img/s2.png') }}"  alt="Feature">
+              </div>
+            </div>
+            <div class="card-text">
+              <h3>Global Ranking</h3>
+              <p></p>
+            </div>
+          </div>          
+        </a>
+      </div>
     </div>
   </div>
 </div>
 <!-- Services End -->
 <!-- About Start -->
-<div class="lbl-about">
+{{-- <div class="lbl-about">
   <div class="container">
     <div class="row">
       <div class="col-lg-6 pe-xl-5">
@@ -152,5 +204,5 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 @endsection

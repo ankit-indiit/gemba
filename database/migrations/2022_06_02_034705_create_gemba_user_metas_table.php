@@ -17,6 +17,7 @@ class CreateGembaUserMetasTable extends Migration
             $table->id();
             $table->integer('user_id')->nullable();
             $table->integer('gemba_form_id')->nullable();
+            $table->integer('points')->nullable();
             $table->timestamps();
         });
     }

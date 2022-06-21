@@ -8,10 +8,26 @@
          </div>
          <div class="col-lg-6 col-md-12 col-sm-12 order-lg-2 order-1">
             <ul class="footer-menu">
-               <li><a href="#main"><img src="{{ asset('assets/img/settings.png') }}"> Settings</a> </li>
-               <li><a href="#main"><img src="{{ asset('assets/img/light.png') }}">How TO</a> </li>
-               <li><a href="#main"><img src="{{ asset('assets/img/info.png') }}">Info</a> </li>
-               <li><a href="#main"><img src="{{ asset('assets/img/leader.png') }}">Leaders</a> </li>
+               {{-- <li>
+                  <a href="#main">
+                     <img src="{{ asset('assets/img/settings.png') }}"> Settings
+                  </a>
+               </li> --}}
+               <li>
+                  <a href="{{ route('how-to-gemba') }}">
+                     <img src="{{ asset('assets/img/light.png') }}">How TO
+                  </a> 
+               </li>
+               <li>
+                  <a href="{{ route('app-information') }}">
+                     <img src="{{ asset('assets/img/info.png') }}">Info
+                  </a>
+               </li>
+               <li>
+                  <a href="#main">
+                     <img src="{{ asset('assets/img/leader.png') }}">App Demo
+                  </a>
+               </li>
             </ul>
          </div>
          <div class="col-lg-3 col-md-12 col-sm-12 order-lg-3 order-2">

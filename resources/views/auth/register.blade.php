@@ -52,8 +52,8 @@
                         </a>
                      </div>
                      <div class="append_divs">
-                        <div class="form-team-btm">
-                          <input type="hidden" id="secNum" value="1">
+                      <input type="hidden" id="secNum" value="1">
+                        <div class="form-team-btm frm-current-act-0" data-formNo='0'>
                            <div class="accordion-body">
                               <div class="form-group ">
                                  <label>Team's Name</label>
@@ -67,7 +67,7 @@
                                  <label>How many people you want to give access? ( up to 5, for free, with adverts )</label>
                                  <input type="text" data-inc='0' class="form-control advert_members" id="advertMembers0" name="item[0][advert_members]">
                               </div>
-                              <div class="form-group ">
+                              <div class="form-group">
                                  <label>New email address</label>
                                  <div class="addEmailFieldMain addEmailFieldMain0">
                                     <div class="addEmailField teamEmail">
@@ -81,9 +81,7 @@
                               </div>
                            </div>
                         </div>
-                     </div>
-                     <div>
-                     </div>
+                     </div>                     
                      <div class="addMoreTeamDiv">
                         <a href="javascript:void(0)" class="addMoreTeam" type="button" >
                         <i class="fa fa-plus" aria-hidden="true"></i>
@@ -108,7 +106,37 @@
       </div>
    </div>
 </section>
+@endsection
+@section('customGembaScripts')
+  <script type="text/javascript">
+    jQuery(document).on('click','.clone-email-field',function(){
+      var teamMailIndex = parseInt($('#teamMailIndex').val());  
+      var __currentActiveDiv = $(this).closest("div[data-formNo]").attr('data-formNo');
+      var div_html = '<div class="addEmailField teamEmail removeablee'+__currentActiveDiv+'"><input type="email" class="form-control teams_email" name="item['+__currentActiveDiv+'][teams_email][]"> <a href="javascript:void(0)" class="email-repeat-btn remove-email-field"> <i class="fa fa-minus" aria-hidden="true"></i> </a> </div>'; 
+      jQuery(".addEmailFieldMain"+parseInt(__currentActiveDiv)).append(div_html);
+      jQuery(".addEmailField").addClass('show-remove-btn');
+    })
 
+    jQuery(document).on('click','.remove-email-field',function(){
+      jQuery(this).parent().remove();
+    })
+
+    jQuery(document).on('click','.addMoreTeam',function(){
+      var secNum = parseInt($('#secNum').val());
+      var teamMailIndex = parseInt($('#teamMailIndex').val());
+      var div_html = '<div class="form-team-btm frm-current-act-'+secNum+'"  data-formNo="'+secNum+'" style="display: block;"> <div class="accordion-body"> <div class="form-group "> <label>Team Name</label> <input type="text" class="form-control teams_name" name="item['+secNum+'][teams_name]"> </div> <div class="form-group "> <label>Team Logo</label> <input type="file" class="form-control teams_logo" name="item['+secNum+'][teams_logo]"> </div> <div class="form-group "> <label>How many people you want to give access? ( up to 5, for free, with adverts )</label> <input type="text" data-inc="'+secNum+'" class="form-control advert_members" id="advertMembers'+secNum+'" name="item['+secNum+'][advert_members]" aria-invalid="false"> </div> <div class="form-group "> <label>New email address</label> <div class="addEmailFieldMain addEmailFieldMain'+secNum+'"> <div class="addEmailField teamEmail show-remove-btn"> <input type="email" class="form-control teams_email" name="item['+secNum+'][teams_email][]"> <a href="javascript:void(0)" class="email-repeat-btn clone-email-field" style="cursor: no-drop;" onclick="cloneEmailField('+secNum+');"> <i class="fa fa-plus" aria-hidden="true"></i> </a> </div></div> </div> </div> </div>'; 
+      jQuery(".append_divs").slideDown('slow').append(div_html);
+      $('#secNum').val( secNum + 1 );
+      $('#teamMailIndex').val( teamMailIndex + 1 );
+      $('#registerFormBtn').trigger('click');
+    });
+
+    $(".addTeam").click(function(){
+      $(".form-team-btm").toggle(500);
+       $(".addMoreTeamDiv").toggleClass('addMoreTeamShow');
+       $('#registerFormBtn').trigger('click');
+    });
+  </script>
 @endsection
 
 

@@ -12,5 +12,6 @@ class GembaForm extends Model
     protected $fillable = [
     	'name',
     	'slug',
+    	'sumission_point',
     ];
 }

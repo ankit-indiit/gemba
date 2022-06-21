@@ -22,7 +22,7 @@ class UserProfileController extends Controller
     public function accountInfo()
     {
         $teams = UserTeam::where('user_id', Auth::user()->id)->get();
-        return view('page.account-info', compact('teams'));
+        return view('page.account-info.account-info', compact('teams'));
     }
 
     public function updateProfile(Request $request)
@@ -30,7 +30,8 @@ class UserProfileController extends Controller
         switch($request->type) {      
         case 'name':
             $userFormField = [
-                    'name' => $request->name,                    
+                    'name' => $request->name,                   
+                    'description' => $request->description,                   
                 ];
             $data = $request->name;                         
         break;      
@@ -70,19 +71,6 @@ class UserProfileController extends Controller
         if ($userUpdatedProfile) {
             $messags['message'] = "Profile has beem updated!";
             $messags['data'] = $data;
-            $messags['status'] = true; 
-        } else {
-            $messags['message'] = "Please try again!";
-            $messags['status'] = false; 
-        }
-        return response()->json($messags, 200);
-    }
-
-    public function deleteTeam(Request $request)
-    {       
-        $deleteUserTeam = UserTeam::where('id', $request->id)->delete();
-        if ($deleteUserTeam == true) {
-            $messags['message'] = "Team has beem deleted!";
             $messags['status'] = true; 
         } else {
             $messags['message'] = "Please try again!";

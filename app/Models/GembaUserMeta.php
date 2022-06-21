@@ -13,10 +13,12 @@ class GembaUserMeta extends Model
     protected $fillable = [
     	'user_id',
     	'gemba_form_id',
+        'points',
     ];
 
     protected $appends = [
         'form_name',        
+        'form_slug',        
         'formMeta',
     ];
 
@@ -31,12 +33,17 @@ class GembaUserMeta extends Model
             ->where('gemba_user_meta_id', $this->attributes['id'])
             ->pluck('meta_value')
             ->first();
-    }
+    }    
 
     public function getFormNameAttribute()
     {
         return GembaForm::where('id', $this->attributes['gemba_form_id'])->pluck('name')->first();
-    }   
+    }
+
+    public function getFormSlugAttribute()
+    {
+        return GembaForm::where('id', $this->attributes['gemba_form_id'])->pluck('slug')->first();
+    }  
 
     public function getCreatedAtAttribute()
     {

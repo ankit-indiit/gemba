@@ -1,6 +1,13 @@
 <?php
 function GembaFormFields($request, $gembaUserMetaId)
-{       
+{   
+    if (Route::currentRouteName() == 'gemba.update') {
+        $reflectionAsaLeader = $request['reflectionAsaLeader'] == '' ? serialize(Session::get('reflection_as_a_leader')) : $request['reflectionAsaLeader'];
+        $reflectOnEmployee = $request['reflectOnEmployee'] == '' ? serialize(Session::get('reflect_on_employee')) : $request['reflectOnEmployee'];
+    } else {
+        $reflectionAsaLeader = serialize(Session::get('reflection_as_a_leader'));
+        $reflectOnEmployee = serialize(Session::get('reflect_on_employee'));
+    }
 	switch($request['type']){      
 		case 'hsse-leader-led':     			
             $gembaFormFields = [
@@ -21,10 +28,6 @@ function GembaFormFields($request, $gembaUserMetaId)
                     'meta_value' => $request['time_at_gemba'],
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],[
-                    'meta_key' => 'function_observed',
-                    'meta_value' => $request['function_observed'],
-                    'gemba_user_meta_id' =>$gembaUserMetaId,
-                ],[
                     'meta_key' => 'gemba_located_in',
                     'meta_value' => $request['gemba_located_in'],
                     'gemba_user_meta_id' =>$gembaUserMetaId,
@@ -42,7 +45,7 @@ function GembaFormFields($request, $gembaUserMetaId)
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],[
                     'meta_key' => 'other_hazard_at_workplace',
-                    'meta_value' => $request['other_hazard_at_workplace'],
+                    'meta_value' => @$request['other_hazard_at_workplace'],
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],[
                     'meta_key' => 'questions',
@@ -66,11 +69,11 @@ function GembaFormFields($request, $gembaUserMetaId)
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],[
                     'meta_key' => 'reflection_as_a_leader',
-                    'meta_value' => @serialize(Session::get('reflection_as_a_leader')),
+                    'meta_value' => $reflectionAsaLeader,
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],[
                     'meta_key' => 'reflect_on_employee',
-                    'meta_value' => @serialize(Session::get('reflect_on_employee')),
+                    'meta_value' => $reflectOnEmployee,
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],                               
             ];
@@ -86,10 +89,6 @@ function GembaFormFields($request, $gembaUserMetaId)
                 ],[
                     'meta_key' => 'time',
                     'meta_value' => $request['time'],
-                    'gemba_user_meta_id' =>$gembaUserMetaId,
-                ],[
-                    'meta_key' => 'job_name',
-                    'meta_value' => $request['job_name'],
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],[
                     'meta_key' => 'time_at_gemba',
@@ -114,6 +113,10 @@ function GembaFormFields($request, $gembaUserMetaId)
                 ],[
                     'meta_key' => 'team_translate_company_indicator',
                     'meta_value' => $request['team_translate_company_indicator'],
+                    'gemba_user_meta_id' =>$gembaUserMetaId,
+                ],[
+                    'meta_key' => 'job_impect_these_indicators',
+                    'meta_value' => $request['job_impect_these_indicators'],
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],[
                     'meta_key' => 'visible_their_area',
@@ -145,11 +148,11 @@ function GembaFormFields($request, $gembaUserMetaId)
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],[
                     'meta_key' => 'reflection_as_a_leader',
-                    'meta_value' => @serialize(Session::get('reflection_as_a_leader')),
+                    'meta_value' => $reflectionAsaLeader,
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],[
                     'meta_key' => 'reflect_on_employee',
-                    'meta_value' => @serialize(Session::get('reflect_on_employee')),
+                    'meta_value' => $reflectOnEmployee,
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],                                    
             ];
@@ -173,10 +176,6 @@ function GembaFormFields($request, $gembaUserMetaId)
                 ],[
                     'meta_key' => 'time_at_gemba',
                     'meta_value' => $request['time_at_gemba'],
-                    'gemba_user_meta_id' =>$gembaUserMetaId,
-                ],[
-                    'meta_key' => 'function_of_area_visited',
-                    'meta_value' => $request['function_of_area_visited'],
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],[
                     'meta_key' => 'gemba_located_in',
@@ -220,11 +219,11 @@ function GembaFormFields($request, $gembaUserMetaId)
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],[
                     'meta_key' => 'reflection_as_a_leader',
-                    'meta_value' => @serialize(Session::get('reflection_as_a_leader')),
+                    'meta_value' => $reflectionAsaLeader,
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],[
                     'meta_key' => 'reflect_on_employee',
-                    'meta_value' => @serialize(Session::get('reflect_on_employee')),
+                    'meta_value' => $reflectOnEmployee,
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],                                      
             ];
@@ -248,10 +247,6 @@ function GembaFormFields($request, $gembaUserMetaId)
                 ],[
                     'meta_key' => 'time_at_gemba',
                     'meta_value' => $request['time_at_gemba'],
-                    'gemba_user_meta_id' =>$gembaUserMetaId,
-                ],[
-                    'meta_key' => 'function_visited',
-                    'meta_value' => $request['function_visited'],
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],[
                     'meta_key' => 'gemba_located_in',
@@ -283,11 +278,11 @@ function GembaFormFields($request, $gembaUserMetaId)
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],[
                     'meta_key' => 'reflection_as_a_leader',
-                    'meta_value' => @serialize(Session::get('reflection_as_a_leader')),
+                    'meta_value' => $reflectionAsaLeader,
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],[
                     'meta_key' => 'reflect_on_employee',
-                    'meta_value' => @serialize(Session::get('reflect_on_employee')),
+                    'meta_value' => $reflectOnEmployee,
                     'gemba_user_meta_id' =>$gembaUserMetaId,
                 ],                                      
             ];
@@ -302,4 +297,10 @@ function GembaFormFields($request, $gembaUserMetaId)
 function dateFormat($date)
 {
     return date("d F, Y", strtotime($date));
+}
+
+function gembaPoints()
+{
+    return App\Models\GembaUserMeta::where('user_id', Auth::id())
+        ->sum('points');
 }

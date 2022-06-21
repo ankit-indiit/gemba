@@ -11,23 +11,8 @@
             <div class="col-lg-12">
                 <div class="gembas-list-card">
                     <div class="gembas-list-profile">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="update-profile d-flex">
-                                    <img src="{{ Auth::user()->image }}" alt="">
-                                <div class="ms-4 mt-lg-3">
-                                    <h3 class="mb-0">{{ Auth::user()->name }}</h3>
-                                    <span class="text-gray">Lorem Ipsum is simply dummy text </span>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="col-md-4 total-points-div">
-                                <h3 class="mb-0">Total points this month</h3>
-                                <div class="d-flex align-items-center">
-                                   <a href="javascript:void(0);" class="btn-badge">63 </a> <i class="fa fa-info-circle ms-2" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tooltip on bottom"></i>
-                                </div>
-                            </div>
-                        </div>
+                        {{-- Gemba Ponts --}} 
+                        @include('page.gemba.component.gemba-points-bar')
                     </div>               
                     <div class="gembas-details">
                         <div class="gembas-details-item">
@@ -53,13 +38,7 @@
                             <div class="gemba-details-value">
                                 {{ $gemba->formMeta('duration_at_gemba') }}
                             </div>
-                        </div>
-                        <div class="gembas-details-item">
-                            Function visited
-                            <div class="gemba-details-value">
-                                {{ $gemba->formMeta('function_visited') }}
-                            </div>
-                        </div>
+                        </div>                        
                         <div class="gembas-details-item">
                             Gemba located in
                             <div class="gemba-details-value">
@@ -72,26 +51,8 @@
                                 {{ $gemba->formMeta('employee_engagemant_survey') }}
                             </div>
                         </div>
-                       <div class="gembas-details-item gembas-question-details w-100">
-                        Questions
-                            @foreach (unserialize($gemba->formMeta('questions')) as $question)
-                                @if (!empty($question['type']) && !empty($question['label']))
-                                    <div class="Questions-lists">
-                                        <ul>
-                                            <li> <label>Type of question</label>
-                                                <span>{{ $question['type'] }}</span>
-                                            </li>
-                                            <li> <label>Question label:</label>
-                                                <span>{{ $question['label'] }}</span>
-                                            </li>
-                                            <li> <label>List of options</label>
-                                                <span>{{ $question['list_option'] }}</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                @endif
-                            @endforeach                           
-                        </div>
+                        {{-- Question Section  --}}
+                        @include('page.gemba.component.show-question-section', ['gemba' => $gemba])
                         <div class="gembas-details-item w-100">
                             Observations and/or Training Needs
                             <div class="gemba-details-value">
@@ -115,7 +76,7 @@
                                     <i class="fa fa-file" aria-hidden="true"></i> <a href="#">voluptate-velit</a>
                                 </div>
                             </div>
-                        </div>
+                        </div>                        
                     </div>
                 </div>
             </div>

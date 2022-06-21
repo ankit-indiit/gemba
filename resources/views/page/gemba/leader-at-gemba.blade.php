@@ -16,7 +16,7 @@
                            <img src="{{ asset('assets/img/dev.png') }}" width="35" />
                         </div>
                      </div>
-                     <div class="fbox-content">
+                     <div class="fbox-content pe_15">
                         <h3>Develop a high-performance team</h3>
                         <p>Develop the dream team capable to move beyond company goals</p>
                         <a href="{{ route('gemba.index') }}"  class="get-started-btn what-btn">Get Started</a>
@@ -30,7 +30,7 @@
                            <img src="{{ asset('assets/img/coach.png') }}" width="35" />
                         </div>
                      </div>
-                     <div class="fbox-content">
+                     <div class="fbox-content pe_15">
                         <h3>Coach on Continuous improvement tools</h3>
                         <p>Coach on Lean tools</p>
                         <a href="javascript: void(0)"  class="get-started-btn what-btn">Get Started</a>
@@ -43,12 +43,13 @@
       <div class="row justify-content-center mt-4">
          <div class="col-md-8">
            <div class="section-intro text-center">
-             <h2 class="section-title">My leadership habit journey</h2>
+             <h2 class="section-title">My Leadership habit journey</h2>
+             <p>Plan and develop my leadership habit</p>
            </div>
          </div>
       </div>
       <div class="row mt-4">
-         <div class="col-md-4">
+         {{-- <div class="col-md-4">
             <a href="{{ route('my-gemba.index') }}">
                <div class="what-box">
                   <div class="what-info m-0">
@@ -64,16 +65,20 @@
                   </div>
                </div>
             </a>
-         </div>
+         </div> --}}
 
-         <div class="col-md-8 leaderright">
+         {{-- <div class="col-md-8 leaderright"> --}}
             <div class="row">
                <div class="col-md-6">
                   <div class="what-box">
                      <div class="what-info m-0">
                         <h5 class="text-center">Planning my routine</h5>
-                        <p>Quarterly</p>
-                        <p>Monthly</p>
+                        <div class="sub-row">
+                           <p>Quarterly</p>                           
+                        </div>
+                        <div class="sub-row">
+                           <p>Monthly</p>                           
+                        </div>
                      </div>
                   </div>
                </div>
@@ -82,13 +87,20 @@
                   <div class="what-box">
                      <div class="what-info m-0">
                         <h5 class="text-center">My leadership Self-reflection</h5>
-                        <p>Me and my mission</p>
-                        <p>My quarterly reflections</p>
+                        <div class="sub-row">
+                           <p>Me and my mission</p>                           
+                        </div>
+                        <div class="sub-row">
+                           <p>My quarterly reflections</p>                           
+                        </div>
+                        <div class="sub-row">
+                           <p>My monthly reflections</p>                           
+                        </div>
                      </div>
                   </div>
                </div>
             </div>
-         </div>
+         {{-- </div> --}}
       </div>
    </div>
 </section>

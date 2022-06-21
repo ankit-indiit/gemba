@@ -1,6 +1,10 @@
 @extends('layout.master')
 @section('content')  
-@include('page.component.bread-crumb', ['title' => 'Processes are standard', 'previous_page' => route('gemba.index'), 'page_title' => 'Develop Employee/ Team'])
+@include('page.component.bread-crumb', [
+  'title' => 'Processes are standard',
+  'previous_page' => route('gemba.index'),
+  'page_title' => 'Develop High performance teams'
+])
 <section class="add-gemba-section">
    <div class="container">
       <div class="row">
@@ -36,18 +40,7 @@
                         <label for="" class="form-label">Time at Gemba(minutes)</label>
                         <input type="text" class="form-control" name="time_at_gemba" id="">
                      </div>
-                  </div>
-                  <div class="col-md-6">
-                     <div class="form-group">
-                        <label for="" class="form-label">Function of the area visited</label>
-                        <select class="form-select form-control" name="function_of_area_visited" aria-label="Default select example">
-                           <option selected>Select...</option>
-                           <option value="1">One</option>
-                           <option value="2">Two</option>
-                           <option value="3">Three</option>
-                        </select>
-                     </div>
-                  </div>
+                  </div>                  
                   <div class="col-md-6">
                      <div class="form-group">
                         <label for="" class="form-label">Gemba located in</label>
@@ -60,19 +53,19 @@
                         <div class="checkbox-group">
                            <div class="form-check form-check-inline">
                               <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="document_available[]" value="sop">
-                              <label class="form-check-label" for="inlineCheckbox1">SOP <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tooltip on bottom"></i></label>
+                              <label class="form-check-label" for="inlineCheckbox1">SOP <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="bottom" title="An SOP is a procedure specific to your operation that describes the activities necessary to complete tasks in accordance with industry regulations, provincial laws or even just your own standards for running your business"></i></label>
                            </div>
                            <div class="form-check form-check-inline">
                               <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="document_available[]" value="checklist">
-                              <label class="form-check-label" for="inlineCheckbox2">Checklist <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tooltip on bottom"></i></label>
+                              <label class="form-check-label" for="inlineCheckbox2">Checklist <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Process checklists are an error proofing and process data collection device which guides operators and staff in monitoring the key plant components, settings, and quality of both work in progress and finish products."></i></label>
                            </div>
                            <div class="form-check form-check-inline">
                               <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="document_available[]" value="flowchart">
-                              <label class="form-check-label" for="inlineCheckbox3">Flowchart <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tooltip on bottom"></i></label>
+                              <label class="form-check-label" for="inlineCheckbox3">Flowchart <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="bottom" title="A flowchart is a picture of the separate steps of a process in sequential order. It is a generic tool that can be adapted for a wide variety of purposes, and can be used to describe various processes, such as a manufacturing process, an administrative or service process, or a project plan."></i></label>
                            </div>
                            <div class="form-check form-check-inline">
                               <input class="form-check-input" type="checkbox" id="inlineCheckbox4" name="document_available[]" value="working instruction">
-                              <label class="form-check-label" for="inlineCheckbox4">Working instructions <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tooltip on bottom"></i></label>
+                              <label class="form-check-label" for="inlineCheckbox4">Working instructions <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Work Instructions are documents that clearly and precisely describe the correct way to perform certain tasks that may cause inconvenience or damage if not done in the established manner. That is, describe, dictate or stipulate the steps that must be followed to correctly perform any specific activity or work."></i></label>
                            </div>
                         </div>
                      </div>
@@ -94,7 +87,7 @@
                   </div>
                   <div class="col-md-12">
                      <div class="form-group">
-                        <label for="" class="form-label w-100 mb-3">Does the procedure have a skill matrix associated? <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tooltip on bottom"></i></label>
+                        <label for="" class="form-label w-100 mb-3">Does the procedure have a skill matrix associated? <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="bottom" title="A skills matrix is a framework used to map employees' skills and their levels. It's a grid that contains information about available skill and their evaluation. It is used to manage, plan, and monitor existing and desired skills for a role, team, department, project, or an entire company."></i></label>
                         <div class="from-radio-box">
                            <div class="form-check form-check-inline">
                               <input class="form-check-input" type="radio" name="have_skill_matrix_associated" id="inlineRadio5" value="yes">
@@ -113,10 +106,6 @@
                         <label for="" class="form-label mb-3">Are all the steps of the procedure followed?</label>
                         <div class="from-radio-box">
                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="all_steps_procedure" id="inlineRadio7" value="No">
-                              <label class="form-check-label" for="inlineRadio7">No</label>
-                           </div>
-                           <div class="form-check form-check-inline">
                               <input class="form-check-input" type="radio" name="all_steps_procedure" id="inlineRadio8" value="Yes, in order">
                               <label class="form-check-label" for="inlineRadio8">Yes, in order</label>
                            </div>
@@ -124,20 +113,25 @@
                               <input class="form-check-input" type="radio" name="all_steps_procedure" id="inlineRadio9" value="Yes, but not in order">
                               <label class="form-check-label" for="inlineRadio9">Yes, but not in order</label>
                            </div>
+                           <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="all_steps_procedure" id="inlineRadio7" value="No">
+                              <label class="form-check-label" for="inlineRadio7">No</label>
+                           </div>
                         </div>
                      </div>
                   </div>
                   @include('page.gemba.component.add-question-section')
+                  <div class="appendQus"></div>
                   <div class="col-md-12">
                         <div class="form-group">   
                             <label for="" class="form-label">Observations and/or Training Needs</label>
-                            <input type="text" class="form-control" name="observation_training_need" id="">
+                            <textarea rows="2" type="text" class="form-control" name="observation_training_need" id=""></textarea>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">   
                             <label for="" class="form-label">Improvements agreed with the team:</label>
-                            <textarea type="text" class="form-control" name="improvements_agreed_with_team" id=""></textarea>
+                            <textarea rows="2" type="text" class="form-control" name="improvements_agreed_with_team" id=""></textarea>
                         </div>
                     </div>
                     <div class="col-md-12">

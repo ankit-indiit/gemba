@@ -12,44 +12,51 @@
 	    }
 		}
 
+// $(document).on('change', '#advertMembers', function(){
+// 	var index = $(this).data('inc');
+// 	var memberCount = $(this).val();
+// 	var emailCount = $('.teamsEmail'+index).length;
+// 	if (memberCount <= emailCount) {
 
-jQuery(document).on('click','.clone-email-field',function(){
-	var teamMailIndex = parseInt($('#teamMailIndex').val());	
-	var secNum = parseInt($('#secNum').val());
+//       	const diff = (emailCount - memberCount);
+//       	console.log(diff);
+//       	if (diff == 0) {
+//         	$('.appendEmailField'+index+' > .removeablee'+index).slice(-1).remove();
+//       	} else {
+//         	$('.appendEmailField'+index+' > .removeablee'+index).slice(-(diff)).remove();
+//       	}
+//     }
+// });
 
-	var currentDivs = $('.append_divs > .form-team-btm').length;
-	var activeSection = parseInt(currentDivs - 1); 
-	var div_html = '<div class="addEmailField teamEmail removeablee'+teamMailIndex+'"><input type="email" class="form-control teams_email" name="item['+teamMailIndex+'][teams_email][]"> <a href="javascript:void(0)" class="email-repeat-btn remove-email-field"> <i class="fa fa-minus" aria-hidden="true"></i> </a> </div>'; 
-	console.log('sectionno => ',activeSection);
-	jQuery(".addEmailFieldMain"+activeSection).append(div_html);
-	// $('#teamMailIndex').val( teamMailIndex + 1 );
-	jQuery(".addEmailField").addClass('show-remove-btn');
-})
-jQuery(document).on('click','.remove-email-field',function(){
-	jQuery(this).parent().remove();
-})
+// $(document).on('change', '.membersCount', function(){
+// 	var members = $(this).val();
+// 	var emailLength = $('.emailSec').length;
+// 	if (members <= emailLength) {
 
+//       	const diff = (emailLength - members);
+//       	console.log(diff);
+//       	if (diff == 0) {
+//         	$('.emailSec').slice(-1).remove();
+//       	} else {
+//         	$('.emailSec').slice(-(diff)).remove();
+//       	}
+//     } else {
+//     	$('.appendMoreMemberBtn').prop("disabled", false);
+// 	    $('.appendMoreMemberBtn').css("cursor", "pointer");
+//     }
+// });
 
-$(".addTeam").click(function(){
-  $(".form-team-btm").toggle(500);
-   $(".addMoreTeamDiv").toggleClass('addMoreTeamShow');
-   $('#registerFormBtn').trigger('click');
-});
-
-
-
-jQuery(document).on('click','.addMoreTeam',function(){
-	// var div_html = jQuery('.form-team-btm').first().clone();
-	var secNum = parseInt($('#secNum').val());
-	var teamMailIndex = parseInt($('#teamMailIndex').val());
-	var div_html = '<div class="form-team-btm" style="display: block;"><input type="hidden" id="secNum" value="'+secNum+'"> <div class="accordion-body"> <div class="form-group "> <label>Teams Name</label> <input type="text" class="form-control teams_name" name="item['+secNum+'][teams_name]"> </div> <div class="form-group "> <label>Teams Logo</label> <input type="file" class="form-control teams_logo" name="item['+secNum+'][teams_logo]"> </div> <div class="form-group "> <label>How many people you want to give access? ( up to 5, for free, with adverts )</label> <input type="text" data-inc="'+secNum+'" class="form-control advert_members" id="advertMembers'+secNum+'" name="item['+secNum+'][advert_members]" aria-invalid="false"> </div> <div class="form-group "> <label>New email address</label> <div class="addEmailFieldMain addEmailFieldMain'+secNum+'"> <div class="addEmailField teamEmail show-remove-btn"> <input type="email" class="form-control teams_email" name="item['+teamMailIndex+'][teams_email][]"> <a href="javascript:void(0)" class="email-repeat-btn clone-email-field" style="cursor: no-drop;" onclick="cloneEmailField('+secNum+');"> <i class="fa fa-plus" aria-hidden="true"></i> </a> </div></div> </div> </div> </div>'; 
-	jQuery(".append_divs").slideDown('slow').append(div_html);
-	$('#secNum').val( secNum + 1 );
-	$('#teamMailIndex').val( teamMailIndex + 1 );
-	$('#registerFormBtn').trigger('click');
-})
-
-
+// jQuery(document).on('click','.appendMoreMemberBtn',function(){
+// 	var members = $('.membersCount').val();
+// 	var emailLength = $('.emailSec').length;
+// 	var div_html = '<div class="form-group emailSec"> <div class="row"> <div class="col-md-10"> <label class="frm_label">Email address</label> <div class="input-group"> <input class="form-control appendMoreMember" name="" value=""> </div> </div> <div class="col-md-2 mt-4 pt-2"> <a href="javascript:void(0)" class="email-repeat-btn removeEmailField"> <i class="fa fa-minus" aria-hidden="true"></i> </a> </div> </div> </div>';
+// 	if (emailLength < members) {
+// 		jQuery('.appendMoreMemberSec').slideDown('slow').append(div_html);		
+// 	} else {
+// 		$('.appendMoreMemberBtn').prop('disabled', true);
+// 	    $('.appendMoreMemberBtn').css("cursor", "no-drop");
+// 	}
+// })
 
 $(".chosen-select").chosen();
 
@@ -63,7 +70,7 @@ $(".addQuestions").click(function(){
   $(".form-question-btm").show();
 });
 
-	jQuery(document).on('click','.removeQuestions',function(){
+jQuery(document).on('click','.removeQuestions',function(){
 	if(jQuery(".form-question-btm").length > 1) {
 		jQuery(this).parent().remove();
 	} else {
@@ -75,7 +82,30 @@ $(".addQuestions").click(function(){
 jQuery(document).on('click','.addQuestions',function(){
 	var addQuesIndex = parseInt($('#addQuesIndex').val());
 	// var div_html = jQuery('.form-question-btm').first().clone();
-	var div_html = '<div class="form-question-btm"> <a href="javascript:void(0)" class="removeQuestions" type="button"> Remove </a> <div class="accordion-body"> <div class="row"> <div class="col-md-10"> <div class="form-group mb-4"> <label class="form-label">Type of question:</label> <select class="form-select questionType" name="question['+addQuesIndex+'][type]" > <option value="">Select</option> <option value="Text">Text</option> <option value="Dropdown">Dropdown</option> <option value="Checkbox">Checkbox</option> <option value="Radio">Radio</option> </select> </div> <div class="form-group mb-4"> <label class="form-label">Question label:</label> <input type="text" class="form-control" name="question['+addQuesIndex+'][label]"> </div> <div class="form-group mb-4 list-of-ptions"> <label class="form-label">List of options (Separated by commas)</label> <input type="text" class="form-control" name="question['+addQuesIndex+'][list_option]"> </div> </div> </div> </div> </div>'; 
+	var div_html = '<div class="form-question-btm"> <a href="javascript:void(0)" class="removeQuestions" type="button"> Remove </a> <div class="accordion-body"> <div class="row"> <div class="col-md-10"> <div class="form-group mb-4"> <label class="form-label">Type of question:</label> <select class="form-select questionType" id="qusType"> <option value="">Select 1</option> <option value="Text">Text</option> </select> </div> <div class="form-group mb-4"> <label class="form-label">Question label:</label> <input type="text" class="form-control" id="qusLabel"> </div><div class="form-group mb-4"> <label class="form-label">Comment</label> <textarea class="form-control" id="qusCmnt"></textarea> </div> </div> </div><a href="javascript:void(0)" class="submitQuestions" type="button"> Submit </a></div> </div>'; 
 	jQuery(".add-qstn-append").slideDown('slow').append(div_html);
 	$('#addQuesIndex').val( addQuesIndex + 1 );
 })
+
+$(document).on('click', '.submitQuestions', function(){
+	var addQuesIndex = parseInt($('#addQuesIndex').val()-2);
+	var qusLabel = $(this).parent().find('#qusLabel').val();
+	var qusCmnt = $(this).parent().find('#qusCmnt').val();
+	var qusHtml = '<div class="col-md-12 mt-4 qus'+addQuesIndex+'"> <div class="form-group"> <label for="" class="form-label">'+qusLabel+'</label><input type="hidden" name="question['+addQuesIndex+'][label]" value="'+qusLabel+'"><textarea class="form-control" name="question['+addQuesIndex+'][comment]" id="" rows="3">'+qusCmnt+'</textarea> </div> </div>';
+	if (qusLabel == '' && qusCmnt == '') {
+		if (qusLabel == '') {
+			$(this).parent().find('#qusLabel').addClass('validate');
+		}
+		if (qusCmnt == '') {
+			$(this).parent().find('#qusCmnt').addClass('validate');
+		}
+	} else {
+		var addedQus = $('.qus'+addQuesIndex).length;
+		if (addedQus < 1) {
+			jQuery(".appendQus").slideDown('slow').append(qusHtml);		
+		} else {
+			$('.qus'+addQuesIndex+' .form-label').html(qusLabel);
+			$('.qus'+addQuesIndex+' .form-control').val(qusCmnt);
+		}
+	}
+});

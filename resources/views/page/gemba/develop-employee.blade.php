@@ -1,12 +1,12 @@
 @extends('layout.master')
 @section('content')
-@include('page.component.bread-crumb', ['title' => 'Develop High Performance'])
+@include('page.component.bread-crumb', ['title' => 'Develop High performance teams'])
 <section class="develope-section section-gap">
    <div class="container">
       <div class="row">
          <div class="col-lg-10 offset-lg-1 mb-5">
             <div class="section-intro text-center">
-               <h2 class="section-title">Great leaders spend 5+ hours a week of Gemba</h2>
+               <h2 class="section-title">Great leaders spend 5+ hours a week at Gemba</h2>
             </div>
          </div>
          <div class="col-lg-10 offset-lg-1 mt-3">
@@ -35,7 +35,7 @@
                         
                      </div>
                      <div class="fbox-content">
-                        <h3>Company´s vision, mission and directio</h3>
+                        <h3>Company vision, mission and direction</h3>
                         <p>Purpose: Employees are aware and value company´s direction</p>
                         <a href="{{ route('gemba.show', 'vision-and-mission') }}"  class="get-started-btn what-btn">Get Started</a>
                      </div>

@@ -104,7 +104,7 @@ header#myHeader li.nav-item a.nav-link.active {
 
 
 section.banner {
-    min-height: 500px;
+    min-height: 400px;
     background-color: #f7f7f8;
     background-image: url(../img/banner-pattern.png);
     background-repeat: no-repeat;
@@ -151,12 +151,24 @@ section.banner {
     position: relative;
 }
 .what-box {
-    padding: 80px 60px;
+    padding: 20px 60px;
     background-color: var(--white-color);
     box-shadow: 0px 25px 70px 0px rgb(152 152 153 / 25%);
     display: flex;
     align-items: flex-start;
-    margin-top: 40px;
+    margin-top: 10px;
+}
+
+.sub-row {
+    padding: 25px 15px;
+    background-color: var(--white-color);
+    box-shadow: 0px 25px 70px 0px rgb(152 152 153 / 25%);
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+.leaderbox .what-box .what-info .sub-row p {
+    margin: 0px auto;
 }
 .what-info {
     margin-left: 40px;
@@ -733,6 +745,26 @@ a.addMoreTeam {
     margin-top: 15px;
 }
 
+a.cloneTeam {
+    display: inline-block;
+    height: 32px;
+    padding: 0 18px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 30px;
+    text-decoration: none !important;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #047aed;
+    color: #FFFFFF;
+    border: 1px solid #047aed !important;
+    border-radius: 50px;
+    box-sizing: border-box;
+    transition: 0.2s;
+    margin-top: 15px;
+}
+
 .addMoreTeamDiv a.addMoreTeam {
     display: none;
 }
@@ -756,12 +788,16 @@ section.breadcrumb-section {
 }
 
 
-section.my-gembas-section , section.how-to-section, .add-gemba-section, .section-gap {
+section.my-gembas-section , section.how-to-section, .add-gemba-section {
     padding: 100px 0 100px 0;
     background: #FFFFFF;
     position: relative;
 }
-
+.section-gap {
+    padding: 80px 0 80px 0;
+    background: #FFFFFF;
+    position: relative;
+}
 .form-control:focus {
     box-shadow: none;
 }
@@ -907,7 +943,7 @@ section.how-to-section .section-intro p {
     font-family: 'Montserrat';
     font-size: 13px;
     font-weight: 500;
-    height: 50px;
+    /*height: 50px;*/
     border: 1px solid #047aed;
     border-radius: 4px;
     background-color: #FFFFFF;
@@ -1026,7 +1062,7 @@ a.removeQuestions {
 }
 
 .add-form-div textarea.form-control {
-    height: 100px;
+    /*height: 100px;*/
 }
 
 .modal-bottom-msg {
@@ -1528,6 +1564,25 @@ label.form-check-label {
     transition: 0.2s;
 }
 
+.leaderbox a.cloneTeam {
+    display: inline-block;
+    height: 32px;
+    padding: 0 18px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 30px;
+    text-decoration: none !important;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #047aed;
+    color: #FFFFFF;
+    border: 1px solid #047aed !important;
+    border-radius: 50px;
+    box-sizing: border-box;
+    transition: 0.2s;
+}
+
 .leaderbox .addMoreTeam
 {
     color: #fff;
@@ -1605,4 +1660,141 @@ label.error {
 /* Selected state of the stars */
 .rating-stars ul > li.star.selected > i.fa {
   color:#FF912C;
+}
+
+.cloneEmailField {
+    background-color: #8080808c !important;
+}
+
+.removeEmailField {
+    background-color: #8080808c !important;
+}
+
+a#editUserTeam i {
+    right: 20px;
+    background: #606060;
+}
+
+.update-user-team {
+    width: 60% !important;
+}
+
+.team-form-label {
+    float: left;
+    padding-top: 10px;
+}
+
+.update-user-team .swal2-actions {
+    display: none;
+}
+
+.feedack-rating {
+    padding-left: 0px !important;
+}
+
+.feedack-rating li {
+    list-style-type: none;
+    padding-left: 0px !important;
+}
+
+.disabled {
+  /*pointer-events: none;*/
+  cursor: no-drop;
+  opacity: .6;
+}
+
+.submitQuestions {
+    display: inline-block;
+    height: 32px;
+    padding: 0 18px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 30px;
+    text-decoration: none !important;
+    white-space: nowrap;
+    background: #047aed;
+    color: #FFFFFF;
+    border: 1px solid #047aed !important;
+    border-radius: 50px;
+    box-sizing: border-box;
+    transition: 0.2s;
+    margin-left: 15px;
+}
+
+.validate {
+    border: 1px solid red !important;
+}
+.fbox-content.pe_15 {
+    padding-right: 15px;
+}
+.version_info_div p {
+    font-size: 16px;
+    margin: 0px 0px 10px;
+    font-weight: 500;
+    display: flex;
+    align-items: flex-start;
+    color: #1e1e1e;
+}
+.version_info_div p span.version_head {
+    display: inline-block;
+    margin-right: 20px;
+    min-width: 110px;
+}
+.version_info_div p span.version_detail b {
+    display: block;
+}
+.version_info_div {
+    padding-bottom: 20px;
+}
+.develope-section.leaderbox h4.version_app_share {
+    font-size: 18px;
+    color: #2c2c2c;
+    font-weight: 600;
+    margin: 0px 0px 10px;
+}
+.develope-section.leaderbox .version_submit_btn {
+    font-family: 'Montserrat';
+    display: inline-block;
+    height: 52px;
+    padding: 0 30px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 52px;
+    letter-spacing: 1px;
+    margin: 35px 0px 0;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    white-space: nowrap;
+    cursor: pointer;
+    background-color: transparent;
+    background: #047aed;
+    color: #FFFFFF;
+    border: 1px solid #047aed !important;
+    border-radius: 50px;
+    box-sizing: border-box;
+    transition: all .3s;
+    width: auto;
+}
+
+.view-refelection ul li i {
+    color: #FF912C;
+}
+
+
+.rating-stars ul > li.star i.fa {
+    font-size: 16px;
+}
+
+.custom-modal-design .star-rating {
+    margin-bottom: 10px;
+}
+
+.custom-modal-design .star-rating ul#stars {
+    margin: 0;
+}
+
+section.rating-widget ul#stars {
+    text-align: left;
 }

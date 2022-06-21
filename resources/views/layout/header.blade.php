@@ -8,16 +8,19 @@
          <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav ms-auto">
                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('home') }}">Dashboard</a>
+                  <a class="nav-link" href="{{ route('home') }}">Home</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('gemba.index') }}">Develop Employee/ Team</a>
+                  <a class="nav-link" href="{{ route('leader-at-gemba') }}">Leader at gemba</a>
                </li>
                <li class="nav-item">
+                  <a class="nav-link" href="#">Employee at gemba</a>
+               </li>
+               {{-- <li class="nav-item">
                  <a class="nav-link" href="{{ route('my-gemba.index') }}">My Gembas</a>
-               </li>
+               </li> --}}
                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('how-to-gemba') }}">How To</a>
+                  {{-- <a class="nav-link" href="{{ route('how-to-gemba') }}">How To</a> --}}
                </li>
                <li class="nav-item user-dropdown dropdown ms-md-5">
                   <a href="javascript:void(0)" class="dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

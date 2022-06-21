@@ -16,6 +16,18 @@ class UserTeam extends Model
     	'adverts_count',
     ];
 
+    protected $appends = [
+        'team_members',        
+    ];
+
+    public function getTeamMembersAttribute()
+    {
+        $userTeamMemberId = UserTeamMember::where('team_id', $this->attributes['id'])
+            ->pluck('team_member_id')
+            ->toArray();
+        return User::whereIn('id', $userTeamMemberId)->get();
+    }
+
     public function getImageAttribute()
     {
         if (isset($this->attributes['image'])) {

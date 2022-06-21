@@ -1,6 +1,10 @@
 @extends('layout.master')
 @section('content') 
-@include('page.component.bread-crumb', ['title' => 'Sharing company´s vision, mission and direction', 'previous_page' => route('gemba.index'), 'page_title' => 'Develop Employee/ Team'])
+@include('page.component.bread-crumb', [
+  'title' => 'Sharing company´s vision, mission and direction',
+  'previous_page' => route('gemba.index'),
+  'page_title' => 'Develop High performance teams'
+])
 <section class="add-gemba-section">
    <div class="container">
       <div class="row">
@@ -24,13 +28,7 @@
                         <label for="" class="form-label">Time</label>
                         <input type="time" class="form-control" name="time" value="{{ date("H:i") }}" id="">
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                     <div class="form-group"> 
-                        <label for="" class="form-label">Role/Job Name</label>
-                        <input type="text" class="form-control" name="job_name" id="">
-                     </div>
-                  </div>
+                  </div>                  
                   <div class="col-md-6">
                      <div class="form-group">  
                         <label for="" class="form-label">Time at Gemba(minutes)</label>
@@ -49,9 +47,9 @@
                         <input type="text" class="form-control" name="gemba_located_in" id="">
                      </div>
                   </div>
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                      <div class="form-group">
-                        <label for="" class="form-label w-100 mb-3">Can the team share what company´s vision, mission and/or values are?</label>
+                        <label for="" class="form-label w-100 mb-3">Can the team share what the company´s vision, mission and values are?</label>
                         <div class="from-radio-box">
                            <div class="form-check form-check-inline">
                               <input class="form-check-input" type="radio" name="team_share_company_vission_mission" id="inlineRadio1" value="yes">
@@ -64,9 +62,9 @@
                         </div>
                      </div>
                   </div>
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                      <div class="form-group">
-                        <label for="" class="form-label w-100 mb-3">Does the team know what is the company´s scorecard?</label>
+                        <label for="" class="form-label w-100 mb-3">Does the team know what are the company´s annual objectives?</label>
                         <div class="from-radio-box">
                            <div class="form-check form-check-inline">
                               <input class="form-check-input" type="radio" name="team_know_company_scorecard" id="inlineRadio3" value="yes">
@@ -79,9 +77,9 @@
                         </div>
                      </div>
                   </div>
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                      <div class="form-group">
-                        <label for="" class="form-label w-100 mb-3">Can the team translate the company´s objectives to their team´s leading indicators? <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tooltip on bottom"></i></label>
+                        <label for="" class="form-label w-100 mb-3">Can the team translate the company´s objectives to the team´s indicators?<i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tooltip on bottom"></i></label>
                         <div class="from-radio-box">
                            <div class="form-check form-check-inline">
                               <input class="form-check-input" type="radio" name="team_translate_company_indicator" id="inlineRadio5" value="yes">
@@ -94,21 +92,32 @@
                         </div>
                      </div>
                   </div>
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                      <div class="form-group ">
-                        <label for="" class="form-label mb-3">Are they visible in their area and up-to-date?</label>
+                        <label for="" class="form-label mb-3">Are these indicators visible in their area and data is up-to-date?</label>
                         <div class="from-radio-box">
+                           <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="visible_their_area" id="inlineRadio8" value="yes">
+                              <label class="form-check-label" for="inlineRadio8">Yes</label>
+                           </div>                           
                            <div class="form-check form-check-inline">
                               <input class="form-check-input" type="radio" name="visible_their_area" id="inlineRadio7" value="no">
                               <label class="form-check-label" for="inlineRadio7">No</label>
                            </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group ">
+                        <label for="" class="form-label mb-3">Can the team describe how their jobs impact these indicators?</label>
+                        <div class="from-radio-box">
                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="visible_their_area" id="inlineRadio8" value="yes, in order">
-                              <label class="form-check-label" for="inlineRadio8">Yes, in order</label>
-                           </div>
+                              <input class="form-check-input" type="radio" name="job_impect_these_indicators" id="jobImpectTheseIndicatorsYes" value="yes">
+                              <label class="form-check-label" for="jobImpectTheseIndicatorsYes">Yes</label>
+                           </div>                           
                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="visible_their_area" id="inlineRadio9" value="yes, but not in order">
-                              <label class="form-check-label" for="inlineRadio9">Yes, but not in order</label>
+                              <input class="form-check-input" type="radio" name="job_impect_these_indicators" id="jobImpectTheseIndicatorsNo" value="no">
+                              <label class="form-check-label" for="jobImpectTheseIndicatorsNo">No</label>
                            </div>
                         </div>
                      </div>
@@ -120,10 +129,11 @@
                      </div>
                   </div>
                   @include('page.gemba.component.add-question-section')
+                  <div class="appendQus"></div>
                   <div class="col-md-12">
                         <div class="form-group">   
                             <label for="" class="form-label">Observations and/or Training Needs</label>
-                            <input type="text" class="form-control" name="observation_training_need" id="">
+                            <textarea class="form-control" name="observation_training_need" id=""></textarea>
                         </div>
                     </div>
                     <div class="col-md-12">
